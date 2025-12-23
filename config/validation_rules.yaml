@@ -1,0 +1,22 @@
+required_fields:
+  - event_type
+  - timestamp
+  - user_id
+  - event_id
+
+optional_fields:
+  - metadata
+  - source
+
+event_type:
+  allowed_values:
+    - page_view
+    - scroll
+    - search
+    - add_to_cart
+    - purchase
+    - remove_from_cart
+
+timestamp:
+  format: UTC
+  allow_future: false

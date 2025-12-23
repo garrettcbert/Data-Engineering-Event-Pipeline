@@ -1,0 +1,16 @@
+environment: dev
+
+file_paths:
+  raw_data: /data/raw/
+  processed_data: /data/processed/
+  staging_data: /data/staging/
+  reports: reports/
+
+pipeline:
+  batch_size: 1000
+  fail_on_error: false
+  write_invalid_records: true
+
+logging:
+  level: INFO
+  log_file: logs/

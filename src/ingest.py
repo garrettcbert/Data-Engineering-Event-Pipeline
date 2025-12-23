@@ -1,3 +1,4 @@
+#  Variables:
 #  - event_id: string, unique identifier for the event
 #  - user_id: int, unique identifier for the user
 #  - event_type: string, type of the event (e.g., "click", "view", "purchase")
@@ -5,14 +6,22 @@
 #  - source: string, source of the event (e.g., "web", "mobile", "email")
 #  - metadata: json, additional information about the event in JSON format
 
+# Generated Errors:
+#  - Duplicate events
+#  - Missing values of all variables
+#  - Null values of all variables
+
 import random
 import numpy as np
 import json
 
-def generate_event_data(num_events, missing_prob = 0.05):
+def generate_event_data(num_events, missing_prob = 0.05, dupe_prob = 0.02):
     generated_data = [] # init final list
 
     for i in range(num_events):
+        if random.random() < missing_prob:
+            continue
+
         event_data = {} # init event dict
 
         if random.random() > missing_prob:
@@ -43,8 +52,11 @@ def generate_event_data(num_events, missing_prob = 0.05):
         meta_weights = list(meta_data[event_choice].values())
         if random.random() > missing_prob:
             event_data['metadata'] = random.choices(meta_list, weights = meta_weights, k = 1)[0]
-
+        
         generated_data.append(event_data)
+        if random.random() < dupe_prob:
+            generated_data.append(event_data)
+
 
     return generated_data
 
