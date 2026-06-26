@@ -1,4 +1,4 @@
-# DE-Project2025
+# Data Engineering Event Pipeline
 
 A Python data engineering pipeline that simulates ingesting, validating, and cleaning a messy real-world e-commerce event stream. The pipeline generates synthetic event data with intentional noise, then processes it through three stages to produce a clean, typed dataset.
 
