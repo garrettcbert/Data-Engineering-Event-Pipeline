@@ -1,9 +1,9 @@
 environment: dev
 
 file_paths:
-  raw_data: /data/raw/
-  processed_data: /data/processed/
-  staging_data: /data/staging/
+  raw_data: data/raw/
+  staging_data: data/staging/
+  cleaned_data: data/cleaned/
   reports: reports/
 
 pipeline:
@@ -13,4 +13,4 @@ pipeline:
 
 logging:
   level: INFO
-  log_file: logs/
+  log_file: data_summary.log

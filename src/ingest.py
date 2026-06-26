@@ -11,33 +11,35 @@
 #  - Missing values of all variables
 #  - Null values of all variables
 
+import json
+import os
 import random
 import numpy as np
-import json
 
-def generate_event_data(num_events, missing_prob = 0.05, dupe_prob = 0.02):
-    generated_data = [] # init final list
+
+def generate_event_data(num_events, missing_prob=0.05, dupe_prob=0.02):
+    generated_data = []
 
     for i in range(num_events):
         if random.random() < missing_prob:
             continue
 
-        event_data = {} # init event dict
+        event_data = {}
 
         if random.random() > missing_prob:
-            event_data['event_id'] = f'evt_{str(i).zfill(6)}' # should return evt_000001
+            event_data['event_id'] = f'evt_{str(i).zfill(6)}'
 
         if random.random() > missing_prob:
             event_data['user_id'] = str(random.randint(1, 10000))
 
         event_list = list(interaction_events.keys())
         event_weights = list(interaction_events.values())
-        event_choice = random.choices(event_list, weights = event_weights, k = 1)[0]
+        event_choice = random.choices(event_list, weights=event_weights, k=1)[0]
         if random.random() > missing_prob:
             event_data['event_type'] = event_choice
-        
+
         if random.random() > missing_prob:
-            time_null_prob = 0.03 # time null 3%
+            time_null_prob = 0.03
             if random.random() <= time_null_prob:
                 event_data['timestamp'] = None
             else:
@@ -46,38 +48,50 @@ def generate_event_data(num_events, missing_prob = 0.05, dupe_prob = 0.02):
         source_list = list(sources.keys())
         source_weights = list(sources.values())
         if random.random() > missing_prob:
-            event_data['source'] = random.choices(source_list, weights = source_weights, k = 1)[0]
+            event_data['source'] = random.choices(source_list, weights=source_weights, k=1)[0]
 
-        meta_list = list(meta_data[event_choice].keys())
-        meta_weights = list(meta_data[event_choice].values())
+        meta_key = event_choice.strip().lower() if event_choice is not None else None
+        meta_list = list(meta_data[meta_key].keys())
+        meta_weights = list(meta_data[meta_key].values())
         if random.random() > missing_prob:
-            event_data['metadata'] = random.choices(meta_list, weights = meta_weights, k = 1)[0]
-        
+            event_data['metadata'] = random.choices(meta_list, weights=meta_weights, k=1)[0]
+
         generated_data.append(event_data)
         if random.random() < dupe_prob:
             generated_data.append(event_data)
 
-
     return generated_data
 
+
 interaction_events = {
-    'page_view' : 0.39,
-    'scroll': 0.24,
-    'search': 0.14,
-    'add_to_cart': 0.09,
-    'remove_from_cart': 0.07,
+    'page_view': 0.35,
+    'PAGE_VIEW': 0.04,
+    'scroll': 0.22,
+    'search': 0.12,
+    'Search': 0.02,
+    'add_to_cart': 0.08,
+    'ADD_TO_CART': 0.03,
+    'remove_from_cart': 0.06,
+    'REMOVE_FROM_CART': 0.02,
     'purchase': 0.03,
-    None: 0.04
+    'Purchase': 0.01,
+    None: 0.02
 }
 
 sources = {
-    'web': 0.39,
-    'mobile_ios': 0.19,
-    'mobile_android': 0.04,
-    'tablet': 0.09,
-    'desktop_app': 0.14,
-    'email': 0.09,
-    None: 0.06
+    'web': 0.30,
+    'mobile_ios': 0.15,
+    'mobile_android': 0.03,
+    'tablet': 0.07,
+    'desktop_app': 0.10,
+    'email': 0.06,
+    'hsearch': 0.05,
+    'mobil': 0.04,
+    'WEB': 0.04,
+    'unknown_source': 0.08,
+    'api_v2': 0.04,
+    'direct': 0.02,
+    None: 0.02
 }
 
 meta_data = {
@@ -157,10 +171,14 @@ meta_data = {
     }
 }
 
-for i in range(3):
-    with open(f'data/raw/events_2025_01_0{i}.json', 'w', encoding = 'utf-8') as f:
-        json.dump(generate_event_data(10000), f, indent =2)
 
+if __name__ == '__main__':
+    PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    RAW_DIR = os.path.join(PROJECT_ROOT, 'data', 'raw')
+    os.makedirs(RAW_DIR, exist_ok=True)
 
-
-
+    for i in range(3):
+        out_path = os.path.join(RAW_DIR, f'events_2025_01_0{i}.json')
+        with open(out_path, 'w', encoding='utf-8') as f:
+            json.dump(generate_event_data(10000), f, indent=2)
+        print(f'Generated {out_path}')

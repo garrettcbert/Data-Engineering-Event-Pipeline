@@ -1,26 +1,2 @@
-INFO:root:Total Records: 9658
-INFO:root:Unique Users: 5879
-INFO:root:Records without User ID: 514
-INFO:root:Duplicate Events: 179
-INFO:root:Total Records: 9658
-INFO:root:Unique Users: 5879
-INFO:root:Records without User ID: 514
-INFO:root:Duplicate Events: 179
-INFO:root:Total Records: 9658
-INFO:root:Unique Users: 5879
-INFO:root:Records without User ID: 514
-INFO:root:Duplicate Events: 179
-INFO:root:Total Records: 9658
-INFO:root:Unique Users: 5879
-INFO:root:Records without User ID: 514
-INFO:root:Duplicate Events: 179
-INFO:root:Total Records: 9658
-INFO:root:Unique Users: 5879
-INFO:root:Records without User ID: 514
-INFO:root:Duplicate Events: 179
-INFO:root:Total Records: 9658
-INFO:root:Unique Events: 9546
-INFO:root:Duplicate Events: 112
-INFO:root:Total Records: 9658
-INFO:root:Unique Events: 9546
-INFO:root:Duplicate Events: 112
+2026-06-26 12:57:54,368 INFO Files processed: events_2025_01_00.json, events_2025_01_01.json, events_2025_01_02.json
+2026-06-26 12:57:54,369 INFO Total: 29062 | Valid: 22160 | Invalid: 6902 | Duplicates: 582

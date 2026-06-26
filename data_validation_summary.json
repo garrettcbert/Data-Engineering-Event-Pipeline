@@ -1,42 +1,46 @@
 {
     "run_metadata": {
-        "run_id": "2025_12_22",
-        "input_file": "events_2025_01_00.json",
+        "run_id": "2026_06_26",
+        "input_files": [
+            "events_2025_01_00.json",
+            "events_2025_01_01.json",
+            "events_2025_01_02.json"
+        ],
         "pipeline_stage": "data_validation",
-        "runtime": "3.10 seconds"
+        "runtime": "3.27 seconds"
     },
     "data_statistics": {
-        "total_records": 9658,
-        "valid_records": 5683,
-        "invalid_records": 3863,
-        "percent_invalid": "40.00%"
+        "total_records": 29062,
+        "valid_records": 22160,
+        "invalid_records": 6902,
+        "percent_invalid": "23.75%"
     },
     "failure_analysis": {
-        "duplicate_events": 112,
-        "invalid_event_type": 343,
-        "invalid_timestamp": 288,
-        "invalid_source": 536,
-        "invalid_metadata": 978,
-        "missing_event_id": 452,
-        "missing_user_id": 514
+        "duplicate_events": 582,
+        "invalid_event_type": 556,
+        "invalid_timestamp": 791,
+        "missing_event_id": 1427,
+        "missing_user_id": 1401,
+        "missing_event_type": 1370,
+        "missing_timestamp": 1377
     },
-    "multi-failure_records": {
-        "records_with_multiple_failures": 1011,
-        "max_failures_in_single_record": 6
+    "multi_failure_records": {
+        "records_with_multiple_failures": 578,
+        "max_failures_in_single_record": 3
     },
     "null_rates": {
-        "event_type_null_rate": "8.60%",
-        "timestamp_null_rate": "8.36%",
-        "source_null_rate": "10.04%",
-        "metadata_null_rate": "15.13%"
+        "event_type": "6.76%",
+        "timestamp": "7.61%",
+        "source": "6.82%",
+        "metadata": "13.66%"
     },
     "duplicate_analysis": {
-        "total_duplicate_events": 112,
-        "percent_duplicates": "1.16%"
+        "total_duplicate_events": 582,
+        "percent_duplicates": "2.00%"
     },
     "timestamp_analysis": {
-        "earliest_timestamp": "2025-12-09T06:59:45",
-        "latest_timestamp": "2025-12-20T20:44:47",
+        "earliest_timestamp": "2026-06-15T04:12:02",
+        "latest_timestamp": "2026-06-26T17:57:31",
         "future_timestamps": 0
     }
 }
