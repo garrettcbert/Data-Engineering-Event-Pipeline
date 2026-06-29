@@ -5,3 +5,4 @@ __pycache__/
 data/
 *.log
 data_validation_summary.json
+data_summary.log
