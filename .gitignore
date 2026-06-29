@@ -4,3 +4,4 @@ __pycache__/
 *.pyo
 data/
 *.log
+data_validation_summary.json
