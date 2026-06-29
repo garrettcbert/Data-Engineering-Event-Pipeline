@@ -74,7 +74,7 @@ Case variants like `PAGE_VIEW`, `Search`, and `ADD_TO_CART` are normalized to lo
 
 Duplicate records (identical raw events) are detected in O(1) time via hashing and written to the invalid staging file.
 
-`source` and `metadata` are optional — null values do not invalidate a record.
+`source` and `metadata` are optional - null values do not invalidate a record.
 
 ---
 
